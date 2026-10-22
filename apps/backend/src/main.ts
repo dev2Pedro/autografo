@@ -7,6 +7,7 @@ async function bootstrap() {
     instrument: ObserveInstrument,
   });
   const configService = app.get(ConfigService);
+  app.enableCors({ origin: 'http://localhost:3000' });
   await app.listen(configService.getOrThrow<number>('PORT'));
 }
 void bootstrap();
