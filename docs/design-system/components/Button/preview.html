@@ -1,0 +1,18 @@
+<!-- @dsCard group="Ações" height=110 -->
+<style>
+.row { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; padding: var(--space-4); font-family: var(--font-sans); }
+.btn { font: inherit; font-size: 14px; line-height: 20px; font-weight: 500; height: 40px; padding: 0 var(--space-4); border-radius: var(--radius-md); border: 1px solid transparent; cursor: pointer; }
+.btn:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
+.primary { background: var(--color-brand-700); color: var(--color-neutral-0); }
+.secondary { background: var(--color-neutral-0); color: var(--color-brand-700); border-color: var(--color-neutral-500); }
+.ghost { background: transparent; color: var(--color-brand-700); }
+.danger { background: var(--color-error-700); color: var(--color-neutral-0); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+</style>
+<div class="row">
+  <button class="btn primary">Gerar desenho</button>
+  <button class="btn secondary">Cancelar</button>
+  <button class="btn ghost">Ver versões</button>
+  <button class="btn danger">Excluir transformador</button>
+  <button class="btn primary" disabled>Gerando…</button>
+</div>

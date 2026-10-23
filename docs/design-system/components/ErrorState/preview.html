@@ -1,0 +1,14 @@
+<!-- @dsCard group="Feedback" height=170 -->
+<style>
+.erro { margin: var(--space-4); border: 1px solid var(--color-error-700); border-radius: var(--radius-md); background: var(--color-neutral-0); padding: var(--space-6); font-family: var(--font-sans); display: grid; gap: var(--space-2); justify-items: start; }
+.titulo { margin: 0; font-size: 18px; line-height: 28px; font-weight: 500; color: var(--color-error-700); }
+.descricao { margin: 0; font-size: 14px; line-height: 20px; color: var(--color-neutral-900); }
+.ref { font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-700); }
+.btn { margin-top: var(--space-2); font: inherit; font-size: 14px; font-weight: 500; height: 40px; padding: 0 var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-neutral-500); background: var(--color-neutral-0); color: var(--color-brand-700); }
+</style>
+<div class="erro" role="alert">
+  <h3 class="titulo">Não foi possível carregar os transformadores</h3>
+  <p class="descricao">Verifique sua conexão e tente novamente.</p>
+  <span class="ref">Ref.: REQ-4821</span>
+  <button class="btn">Tentar novamente</button>
+</div>

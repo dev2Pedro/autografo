@@ -1,0 +1,31 @@
+<!-- @dsCard group="Desenho" height=300 -->
+<style>
+.viewer { margin: var(--space-4); font-family: var(--font-sans); border: 1px solid var(--color-neutral-500); border-radius: var(--radius-md); overflow: hidden; background: var(--color-neutral-0); }
+.barra { display: flex; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-neutral-300); font-size: 12px; color: var(--color-neutral-700); }
+.barra span { padding: var(--space-1) var(--space-2); border: 1px solid var(--color-neutral-500); border-radius: var(--radius-sm); background: var(--color-neutral-0); }
+.folha { background: var(--drawing-paper); padding: var(--space-3); }
+.folha svg { width: 100%; height: auto; display: block; }
+.rodape { display: flex; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-top: 1px solid var(--color-neutral-300); font-size: 12px; color: var(--color-neutral-700); }
+.rodape .mono { font-family: var(--font-mono); }
+</style>
+<div class="viewer">
+  <div class="barra"><span>Regenerar</span><span>Zoom +</span><span>Zoom −</span><span>Ajustar</span></div>
+  <div class="folha">
+    <svg viewBox="0 0 600 260" role="img" aria-label="Vista frontal hipotética de um transformador de 500 kVA">
+      <rect x="120" y="60" width="300" height="160" fill="none" style="stroke: var(--drawing-line)" stroke-width="2"/>
+      <rect x="150" y="30" width="22" height="30" fill="none" style="stroke: var(--drawing-line)" stroke-width="2"/>
+      <rect x="220" y="30" width="22" height="30" fill="none" style="stroke: var(--drawing-line)" stroke-width="2"/>
+      <rect x="290" y="30" width="22" height="30" fill="none" style="stroke: var(--drawing-line)" stroke-width="2"/>
+      <rect x="360" y="30" width="22" height="30" fill="none" style="stroke: var(--drawing-line)" stroke-width="2"/>
+      <line x1="60" y1="60" x2="120" y2="60" style="stroke: var(--drawing-hidden)" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="120" y1="240" x2="420" y2="240" style="stroke: var(--drawing-dimension)" stroke-width="1"/>
+      <text x="270" y="256" text-anchor="middle" style="fill: var(--drawing-text)" font-family="JetBrains Mono, monospace" font-size="12">900 mm</text>
+      <line x1="440" y1="60" x2="440" y2="220" style="stroke: var(--drawing-dimension)" stroke-width="1"/>
+      <text x="456" y="144" style="fill: var(--drawing-text)" font-family="JetBrains Mono, monospace" font-size="12">1200 mm</text>
+    </svg>
+  </div>
+  <div class="rodape">
+    <span class="mono">Versão 3 · 21/10/2026 14:35</span>
+    <span>Desenho hipotético e demonstrativo. Não utilizar para fins de engenharia.</span>
+  </div>
+</div>

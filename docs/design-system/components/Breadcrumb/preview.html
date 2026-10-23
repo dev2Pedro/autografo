@@ -1,0 +1,14 @@
+<!-- @dsCard group="Navegação" height=80 -->
+<style>
+.trilha { padding: var(--space-4); font-family: var(--font-sans); font-size: 14px; line-height: 20px; display: flex; gap: var(--space-2); align-items: center; flex-wrap: wrap; }
+.trilha a { color: var(--color-brand-700); text-decoration: none; }
+.trilha a:hover { text-decoration: underline; }
+.trilha a:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
+.separador { color: var(--color-neutral-500); }
+.atual { color: var(--color-neutral-900); }
+</style>
+<nav class="trilha" aria-label="Caminho">
+  <a href="#">Projetos</a><span class="separador">/</span>
+  <a href="#">Transformador 500 kVA</a><span class="separador">/</span>
+  <span class="atual" aria-current="page">Desenho #15</span>
+</nav>

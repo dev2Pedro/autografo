@@ -1,0 +1,17 @@
+<!-- @dsCard group="Navegação" height=110 -->
+<style>
+.wrap { padding: var(--space-4); font-family: var(--font-sans); }
+.abas { display: flex; gap: var(--space-6); border-bottom: 1px solid var(--color-neutral-300); }
+.aba { font: inherit; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--color-neutral-700); background: none; border: 0; padding: var(--space-2) 0; border-bottom: 2px solid transparent; cursor: pointer; }
+.ativa { color: var(--color-neutral-900); border-bottom-color: var(--color-brand-700); }
+.aba:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
+.painel { padding-top: var(--space-3); font-size: 14px; line-height: 20px; color: var(--color-neutral-700); }
+</style>
+<div class="wrap">
+  <div class="abas" role="tablist">
+    <button class="aba ativa" role="tab" aria-selected="true">Dados técnicos</button>
+    <button class="aba" role="tab" aria-selected="false">Desenhos</button>
+    <button class="aba" role="tab" aria-selected="false">Versões</button>
+  </div>
+  <div class="painel">Potência, tensões, frequência, fases e dimensões do transformador.</div>
+</div>

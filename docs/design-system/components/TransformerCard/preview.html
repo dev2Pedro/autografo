@@ -1,0 +1,19 @@
+<!-- @dsCard group="Conteúdo" height=170 -->
+<style>
+.card { margin: var(--space-4); max-width: 340px; font-family: var(--font-sans); background: var(--color-neutral-0); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--space-4); display: grid; gap: var(--space-3); }
+.nome { font-size: 18px; line-height: 28px; font-weight: 500; color: var(--color-neutral-900); margin: 0; }
+.dados { font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--color-neutral-700); display: grid; gap: var(--space-1); }
+.linha { display: flex; justify-content: space-between; align-items: center; }
+.acao { justify-self: start; font: inherit; font-size: 14px; font-weight: 500; color: var(--color-brand-700); background: none; border: 0; padding: 0; cursor: pointer; }
+.acao:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
+.badge { font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500; padding: var(--space-1) var(--space-2); border-radius: var(--radius-sm); background: var(--color-success-100); color: var(--color-success-700); }
+</style>
+<article class="card">
+  <div class="linha"><h3 class="nome">Transformador 500 kVA</h3><span class="badge">Gerado</span></div>
+  <div class="dados">
+    <div>Potência: 500 kVA</div>
+    <div>Tensão: 13.800 V / 380 V</div>
+    <div>Fases: 3</div>
+  </div>
+  <button class="acao">Abrir</button>
+</article>

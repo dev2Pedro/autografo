@@ -1,0 +1,16 @@
+<!-- @dsCard group="Feedback" height=190 -->
+<style>
+.pilha { display: grid; gap: var(--space-3); padding: var(--space-4); font-family: var(--font-sans); }
+.alerta { display: flex; gap: var(--space-3); align-items: flex-start; border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); font-size: 14px; line-height: 20px; }
+.icone { font-weight: 600; flex: none; }
+.info { background: var(--color-info-100); color: var(--color-info-700); }
+.success { background: var(--color-success-100); color: var(--color-success-700); }
+.warning { background: var(--color-warning-100); color: var(--color-warning-700); }
+.error { background: var(--color-error-100); color: var(--color-error-700); }
+</style>
+<div class="pilha">
+  <div class="alerta info" role="status"><span class="icone" aria-hidden="true">i</span><span>Ambiente demonstrativo. Os cálculos são hipotéticos.</span></div>
+  <div class="alerta success" role="status"><span class="icone" aria-hidden="true">✓</span><span>Desenho gerado com sucesso.</span></div>
+  <div class="alerta warning" role="status"><span class="icone" aria-hidden="true">!</span><span>Desenho pendente de regeneração.</span></div>
+  <div class="alerta error" role="alert"><span class="icone" aria-hidden="true">×</span><span>Não foi possível gerar o desenho.</span></div>
+</div>

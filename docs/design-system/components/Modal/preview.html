@@ -1,0 +1,21 @@
+<!-- @dsCard group="Feedback" height=190 -->
+<style>
+.fundo { padding: var(--space-4); font-family: var(--font-sans); }
+.modal { max-width: 360px; background: var(--color-neutral-0); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: var(--space-6); display: grid; gap: var(--space-3); }
+.titulo { margin: 0; font-size: 18px; line-height: 28px; font-weight: 500; color: var(--color-neutral-900); }
+.texto { margin: 0; font-size: 14px; line-height: 20px; color: var(--color-neutral-700); }
+.acoes { display: flex; justify-content: flex-end; gap: var(--space-3); }
+.btn { font: inherit; font-size: 14px; font-weight: 500; height: 40px; padding: 0 var(--space-4); border-radius: var(--radius-md); border: 1px solid transparent; }
+.secundario { background: var(--color-neutral-0); color: var(--color-brand-700); border-color: var(--color-neutral-500); }
+.perigo { background: var(--color-error-700); color: var(--color-neutral-0); }
+</style>
+<div class="fundo">
+  <div class="modal" role="dialog" aria-labelledby="titulo-modal">
+    <h3 class="titulo" id="titulo-modal">Excluir transformador?</h3>
+    <p class="texto">Os desenhos e as versões deste transformador também serão removidos.</p>
+    <div class="acoes">
+      <button class="btn secundario">Cancelar</button>
+      <button class="btn perigo">Excluir</button>
+    </div>
+  </div>
+</div>

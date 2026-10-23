@@ -1,0 +1,8 @@
+<!-- @dsCard group="Carregamento" height=100 -->
+<style>
+.row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--color-neutral-700); }
+.anel { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--color-neutral-300); border-top-color: var(--color-brand-700); animation: girar 800ms linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .anel { animation: none; } }
+</style>
+<div class="row"><span class="anel" role="img" aria-label="Carregando"></span><span>Gerando desenho…</span></div>
