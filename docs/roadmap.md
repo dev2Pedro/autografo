@@ -33,7 +33,7 @@ Atualizado em 23/10/2026.
 ## 02 Prisma e modelagem
 
 - [ ] [02.1 Estudar ORM vs query builder](https://app.clickup.com/t/wdwmbdtkq7) — Comparar Prisma, TypeORM, Drizzle e Lucid. *Pronto quando* a escolha do Prisma está registrada com 3 prós e 2 contras.
-- [ ] [02.2 Instalar e inicializar Prisma](https://app.clickup.com/t/wdwmbdtkq8) — `prisma init` seguindo o setup do Prisma 7 (`prisma.config.ts`, driver adapter). *Pronto quando* a conexão lê `DATABASE_URL` do `.env`.
+- [x] [02.2 Instalar e inicializar Prisma](https://app.clickup.com/t/wdwmbdtkq8) — `prisma init` com Prisma 6 apenas no backend (`url = env("DATABASE_URL")` no schema, sem `prisma.config.ts` nem driver adapter). *Pronto quando* a conexão lê `DATABASE_URL` do `.env`.
 - [ ] [02.3 Modelar Transformer](https://app.clickup.com/t/wdwmbdtkq9) — Model com tipos justificados, enum de fases e nomes snake_case no banco. *Pronto quando* o model está escrito e cada tipo justificado.
 - [ ] [02.4 Modelar Drawing e DrawingVersion](https://app.clickup.com/t/wdwmbdtkqa) — Escolher a estrutura, snapshot de `parameters` em JSONB, relações, unique e índices. *Pronto quando* explicar por que o snapshot torna versão antiga reproduzível.
 - [ ] [02.5 Criar e inspecionar migration](https://app.clickup.com/t/wdwmbdtkqb) — Migration inicial, leitura do SQL gerado e uso do Prisma Studio. *Pronto quando* as 3 tabelas existem e está claro por que não usar `migrate dev` em produção.
