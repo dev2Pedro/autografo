@@ -6,7 +6,7 @@ Atualizado em 25/10/2026.
 
 **Legenda:** `[x]` concluída · `[~]` em andamento · `[ ]` a fazer
 
-**Progresso:** 11 de 109 tarefas concluídas · 0 em andamento
+**Progresso:** 12 de 109 tarefas concluídas · 0 em andamento
 
 ---
 
@@ -37,7 +37,7 @@ Atualizado em 25/10/2026.
 - [x] [02.3 Modelar Transformer](https://app.clickup.com/t/wdwmbdtkq9) — Model com tipos justificados, enum de fases e nomes snake_case no banco. *Pronto quando* o model está escrito e cada tipo justificado.
 - [x] [02.4 Modelar Drawing e DrawingVersion](https://app.clickup.com/t/wdwmbdtkqa) — Escolher a estrutura, snapshot de `parameters` em JSONB, relações, unique e índices. *Pronto quando* explicar por que o snapshot torna versão antiga reproduzível.
 - [x] [02.5 Criar e inspecionar migration](https://app.clickup.com/t/wdwmbdtkqb) — Migration inicial, leitura do SQL gerado e uso do Prisma Studio. *Pronto quando* as 3 tabelas existem e está claro por que não usar `migrate dev` em produção.
-- [ ] [02.6 PrismaService e PrismaModule](https://app.clickup.com/t/wdwmbdtkqc) — Service com `OnModuleInit` e módulo que exporta o service. *Pronto quando* qualquer service consegue injetar `PrismaService`.
+- [x] [02.6 PrismaService e PrismaModule](https://app.clickup.com/t/wdwmbdtkqc) — Service com `OnModuleInit` e módulo que exporta o service. *Pronto quando* qualquer service consegue injetar `PrismaService`.
 - [ ] [02.7 Seed de dados](https://app.clickup.com/t/wdwmbdtkqd) — Seed idempotente com 3 transformadores (500, 750 e 1000 kVA). *Pronto quando* rodar o seed duas vezes não duplica dados.
 - [ ] [02.8 Health check com banco (Terminus)](https://app.clickup.com/t/wdwmbdtkqe) — Trocar o `/health` por `@nestjs/terminus` com indicador do Prisma. *Pronto quando* `/health` reflete o estado real do banco.
 - [ ] [02.9 Fixação da fase 02](https://app.clickup.com/t/wdwmbdtkqf) — Perguntas escritas sobre migrations, JSONB, `onDelete: Cascade` e exports. *Pronto quando* as respostas estão escritas.
