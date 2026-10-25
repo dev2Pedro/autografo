@@ -2,11 +2,11 @@
 
 Espelho das tarefas do espaço **AutoTrafo** no ClickUp. Cada tarefa traz o objetivo resumido e o critério de pronto. O passo a passo completo e os links de documentação ficam na tarefa do ClickUp.
 
-Atualizado em 23/10/2026.
+Atualizado em 25/10/2026.
 
 **Legenda:** `[x]` concluída · `[~]` em andamento · `[ ]` a fazer
 
-**Progresso:** 8 de 109 tarefas concluídas · 0 em andamento
+**Progresso:** 11 de 109 tarefas concluídas · 0 em andamento
 
 ---
 
@@ -32,11 +32,11 @@ Atualizado em 23/10/2026.
 
 ## 02 Prisma e modelagem
 
-- [ ] [02.1 Estudar ORM vs query builder](https://app.clickup.com/t/wdwmbdtkq7) — Comparar Prisma, TypeORM, Drizzle e Lucid. *Pronto quando* a escolha do Prisma está registrada com 3 prós e 2 contras.
+- [x] [02.1 Estudar ORM vs query builder](https://app.clickup.com/t/wdwmbdtkq7) — Comparar Prisma, TypeORM, Drizzle e Lucid. *Pronto quando* a escolha do Prisma está registrada com 3 prós e 2 contras.
 - [x] [02.2 Instalar e inicializar Prisma](https://app.clickup.com/t/wdwmbdtkq8) — `prisma init` com Prisma 6 apenas no backend (`url = env("DATABASE_URL")` no schema, sem `prisma.config.ts` nem driver adapter). *Pronto quando* a conexão lê `DATABASE_URL` do `.env`.
-- [ ] [02.3 Modelar Transformer](https://app.clickup.com/t/wdwmbdtkq9) — Model com tipos justificados, enum de fases e nomes snake_case no banco. *Pronto quando* o model está escrito e cada tipo justificado.
-- [ ] [02.4 Modelar Drawing e DrawingVersion](https://app.clickup.com/t/wdwmbdtkqa) — Escolher a estrutura, snapshot de `parameters` em JSONB, relações, unique e índices. *Pronto quando* explicar por que o snapshot torna versão antiga reproduzível.
-- [ ] [02.5 Criar e inspecionar migration](https://app.clickup.com/t/wdwmbdtkqb) — Migration inicial, leitura do SQL gerado e uso do Prisma Studio. *Pronto quando* as 3 tabelas existem e está claro por que não usar `migrate dev` em produção.
+- [x] [02.3 Modelar Transformer](https://app.clickup.com/t/wdwmbdtkq9) — Model com tipos justificados, enum de fases e nomes snake_case no banco. *Pronto quando* o model está escrito e cada tipo justificado.
+- [x] [02.4 Modelar Drawing e DrawingVersion](https://app.clickup.com/t/wdwmbdtkqa) — Escolher a estrutura, snapshot de `parameters` em JSONB, relações, unique e índices. *Pronto quando* explicar por que o snapshot torna versão antiga reproduzível.
+- [x] [02.5 Criar e inspecionar migration](https://app.clickup.com/t/wdwmbdtkqb) — Migration inicial, leitura do SQL gerado e uso do Prisma Studio. *Pronto quando* as 3 tabelas existem e está claro por que não usar `migrate dev` em produção.
 - [ ] [02.6 PrismaService e PrismaModule](https://app.clickup.com/t/wdwmbdtkqc) — Service com `OnModuleInit` e módulo que exporta o service. *Pronto quando* qualquer service consegue injetar `PrismaService`.
 - [ ] [02.7 Seed de dados](https://app.clickup.com/t/wdwmbdtkqd) — Seed idempotente com 3 transformadores (500, 750 e 1000 kVA). *Pronto quando* rodar o seed duas vezes não duplica dados.
 - [ ] [02.8 Health check com banco (Terminus)](https://app.clickup.com/t/wdwmbdtkqe) — Trocar o `/health` por `@nestjs/terminus` com indicador do Prisma. *Pronto quando* `/health` reflete o estado real do banco.

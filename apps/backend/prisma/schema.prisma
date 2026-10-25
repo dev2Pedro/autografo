@@ -6,3 +6,69 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum TransformerPhase {
+  MONO
+  TRI
+
+  @@map("transformer_phase")
+}
+
+model Transformer {
+  id               Int              @id @default(autoincrement())
+  name             String           @db.VarChar(150)
+  powerKva         Decimal          @map("power_kva") @db.Decimal(10, 2)
+  primaryVoltage   Decimal          @map("primary_voltage") @db.Decimal(10, 2)
+  secondaryVoltage Decimal          @map("secondary_voltage") @db.Decimal(10, 2)
+  phases           TransformerPhase
+
+  heightMm Decimal? @map("height_mm") @db.Decimal(10, 2)
+  widthMm  Decimal? @map("width_mm") @db.Decimal(10, 2)
+  depthMm  Decimal? @map("depth_mm") @db.Decimal(10, 2)
+
+  bushingCount  Int? @map("bushing_count")
+  radiatorCount Int? @map("radiator_count")
+
+  hasTank        Boolean @default(false) @map("has_tank")
+  hasConservator Boolean @default(false) @map("has_conservator")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  drawings Drawing[]
+
+  @@map("transformers")
+}
+
+model Drawing {
+  id            Int      @id @default(autoincrement())
+  transformerId Int      @map("transformer_id")
+  format        String   @db.VarChar(20)
+  svg           String?  @db.Text
+  version       Int      @default(1)
+  status        String   @db.VarChar(20)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  transformer Transformer      @relation(fields: [transformerId], references: [id], onDelete: Cascade)
+  versions    DrawingVersion[]
+
+  @@unique([transformerId, version])
+  @@index([transformerId])
+  @@map("drawings")
+}
+
+model DrawingVersion {
+  id         Int      @id @default(autoincrement())
+  drawingId  Int      @map("drawing_id")
+  version    Int
+  parameters Json     @map("parameters")
+  svg        String?  @db.Text
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  drawing Drawing @relation(fields: [drawingId], references: [id], onDelete: Cascade)
+
+  @@unique([drawingId, version])
+  @@index([drawingId])
+  @@map("drawing_versions")
+}
