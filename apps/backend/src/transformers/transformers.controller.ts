@@ -34,8 +34,8 @@ export class TransformersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.transformersService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.transformersService.findOne(id);
   }
 
   @Patch(':id')

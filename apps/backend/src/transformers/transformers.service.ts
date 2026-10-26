@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTransformerDto } from './dto/create-transformer.dto';
 import { UpdateTransformerDto } from './dto/update-transformer.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -23,8 +23,14 @@ export class TransformersService {
     return { data, meta: { page, limit, total } };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} transformer`;
+  async findOne(id: number) {
+    const transformer = await this.prisma.transformer.findUnique({
+      where: { id },
+    });
+    if (!transformer) {
+      throw new NotFoundException();
+    }
+    return transformer;
   }
 
   update(id: number, updateTransformerDto: UpdateTransformerDto) {
