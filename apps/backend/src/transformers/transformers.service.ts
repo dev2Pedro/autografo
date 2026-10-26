@@ -10,8 +10,17 @@ export class TransformersService {
     return 'This action adds a new transformer';
   }
 
-  findAll() {
-    return `This action returns all transformers`;
+  async findAll(page: number, limit: number) {
+    const [data, total] = await this.prisma.$transaction([
+      this.prisma.transformer.findMany({
+        skip: (page - 1) * limit,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+      }),
+      this.prisma.transformer.count(),
+    ]);
+
+    return { data, meta: { page, limit, total } };
   }
 
   findOne(id: number) {
