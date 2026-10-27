@@ -54,7 +54,18 @@ export class TransformersService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} transformer`;
+  // Hard delete: Drawing e DrawingVersion são removidos em cascata (onDelete: Cascade).
+  async remove(id: number) {
+    try {
+      await this.prisma.transformer.delete({ where: { id } });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException();
+      }
+      throw error;
+    }
   }
 }

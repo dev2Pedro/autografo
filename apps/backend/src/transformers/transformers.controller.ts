@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
   DefaultValuePipe,
   ParseIntPipe,
   Query,
@@ -47,7 +49,8 @@ export class TransformersController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.transformersService.remove(+id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.transformersService.remove(id);
   }
 }
