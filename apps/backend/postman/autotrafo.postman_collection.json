@@ -1,0 +1,329 @@
+{
+  "info": {
+    "name": "AutoTrafo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "transformerId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Criar transformador",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 201', () => pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('transformerId', pm.response.json().id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Transformador 500 kVA\",\n  \"powerKva\": 500,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar (paginado)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));",
+              "pm.test('meta', () => pm.expect(pm.response.json()).to.have.keys('data','meta'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transformers?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers?page=1&limit=10"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Buscar por id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/{{transformerId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "{{transformerId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Atualizar parcialmente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/{{transformerId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "{{transformerId}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Transformador atualizado\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Remover",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 204', () => pm.response.to.have.status(204));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/{{transformerId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "{{transformerId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: buscar removido (404)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/{{transformerId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "{{transformerId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: PATCH inexistente (404)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/999999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "999999"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"x\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Erro: DELETE inexistente (404)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/999999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "999999"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: id inválido (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transformers/abc",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "abc"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: body inválido (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"powerKva\": -1,\n  \"phases\": \"X\"\n}"
+        }
+      }
+    }
+  ]
+}
