@@ -36,8 +36,17 @@ export class TransformersService {
     return transformer;
   }
 
-  update(id: number, updateTransformerDto: UpdateTransformerDto) {
-    return `This action updates a #${id} transformer`;
+  async update(id: number, updateTransformerDto: UpdateTransformerDto) {
+
+    try {
+      const transformer = await this.prisma.transformer.update({
+        where: { id },
+        data: updateTransformerDto,
+      });
+      return transformer;
+    } catch (error){
+      throw new NotFoundException();
+    }
   }
 
   remove(id: number) {
