@@ -24,6 +24,16 @@ const config: Config = {
     'apps/**/*.(t|j)s',
   ],
   coverageDirectory: './coverage',
+  // Regras de negócio exigem 100%: a queda de cobertura em src/rules quebra o `test:cov`.
+  coverageThreshold: {
+    global: {},
+    './src/rules/**/*.ts': {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
   testEnvironment: 'node',
 };
 
