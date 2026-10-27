@@ -2,20 +2,20 @@
 
 Espelho das tarefas do espaço **AutoTrafo** no ClickUp. Cada tarefa traz o objetivo resumido e o critério de pronto. O passo a passo completo e os links de documentação ficam na tarefa do ClickUp.
 
-Atualizado em 25/10/2026.
+Atualizado em 26/10/2026.
 
 **Legenda:** `[x]` concluída · `[~]` em andamento · `[ ]` a fazer
 
-**Progresso:** 12 de 109 tarefas concluídas · 0 em andamento
+**Progresso:** 39 de 109 tarefas concluídas · 0 em andamento
 
 ---
 
 ## 00 Pré-requisitos
 
-- [ ] [00.1 TypeScript essencial](https://app.clickup.com/t/wdwmbdtkpt) — Revisar interface vs type, generics, utility types, classes e decorators (base do Nest). *Pronto quando* explicar o que o Nest faz com `constructor(private readonly service: X)`.
-- [ ] [00.2 HTTP e REST](https://app.clickup.com/t/wdwmbdtkpu) — Verbos, status codes, headers e CORS como parte do contrato da API. *Pronto quando* explicar PUT vs PATCH e por que DELETE pode retornar 204.
-- [ ] [00.3 SQL e PostgreSQL](https://app.clickup.com/t/wdwmbdtkpv) — Chaves, JOIN, índices, transações, tipos do Postgres e normalização. *Pronto quando* explicar json vs jsonb e numeric vs real.
-- [ ] [00.4 Node.js: event loop e async](https://app.clickup.com/t/wdwmbdtkpw) — Event loop, Promises e streams, para não bloquear a API. *Pronto quando* explicar por que um loop síncrono de 5s trava todos os usuários.
+- [x] [00.1 TypeScript essencial](https://app.clickup.com/t/wdwmbdtkpt) — Revisar interface vs type, generics, utility types, classes e decorators (base do Nest). *Pronto quando* explicar o que o Nest faz com `constructor(private readonly service: X)`.
+- [x] [00.2 HTTP e REST](https://app.clickup.com/t/wdwmbdtkpu) — Verbos, status codes, headers e CORS como parte do contrato da API. *Pronto quando* explicar PUT vs PATCH e por que DELETE pode retornar 204.
+- [x] [00.3 SQL e PostgreSQL](https://app.clickup.com/t/wdwmbdtkpv) — Chaves, JOIN, índices, transações, tipos do Postgres e normalização. *Pronto quando* explicar json vs jsonb e numeric vs real.
+- [x] [00.4 Node.js: event loop e async](https://app.clickup.com/t/wdwmbdtkpw) — Event loop, Promises e streams, para não bloquear a API. *Pronto quando* explicar por que um loop síncrono de 5s trava todos os usuários.
 
 ## 01 Setup e ambiente
 
@@ -27,8 +27,8 @@ Atualizado em 25/10/2026.
 - [x] [01.5 Módulo Health](https://app.clickup.com/t/wdwmbdtkq2) — Módulo e controller gerados pelo CLI com `GET /health`. *Pronto quando* `GET /health` retorna JSON.
 - [x] [01.6 Criar frontend Next.js](https://app.clickup.com/t/wdwmbdtkq3) — Next com TypeScript, Tailwind, App Router e `API_URL` no `.env.local`. *Pronto quando* o Next roda em :3000.
 - [x] [01.7 Experimento de CORS](https://app.clickup.com/t/wdwmbdtkq4) — Comparar fetch no Server Component e no Client Component, e liberar CORS só para `localhost:3000`. *Pronto quando* o erro foi visto, corrigido com origem restrita e explicado.
-- [ ] [01.8 Scripts na raiz e commit](https://app.clickup.com/t/wdwmbdtkq5) — Script `dev` na raiz que sobe os dois apps em paralelo. *Pronto quando* um único `pnpm dev` na raiz sobe tudo.
-- [ ] [01.9 Fixação da fase 01](https://app.clickup.com/t/wdwmbdtkq6) — Perguntas escritas sobre providers/exports, CORS, `down -v` e validação de env, mais checklist final da fase. *Pronto quando* as respostas e o checklist estão completos.
+- [x] [01.8 Scripts na raiz e commit](https://app.clickup.com/t/wdwmbdtkq5) — Script `dev` na raiz que sobe os dois apps em paralelo. *Pronto quando* um único `pnpm dev` na raiz sobe tudo.
+- [x] [01.9 Fixação da fase 01](https://app.clickup.com/t/wdwmbdtkq6) — Perguntas escritas sobre providers/exports, CORS, `down -v` e validação de env, mais checklist final da fase. *Pronto quando* as respostas e o checklist estão completos.
 
 ## 02 Prisma e modelagem
 
@@ -38,9 +38,9 @@ Atualizado em 25/10/2026.
 - [x] [02.4 Modelar Drawing e DrawingVersion](https://app.clickup.com/t/wdwmbdtkqa) — Escolher a estrutura, snapshot de `parameters` em JSONB, relações, unique e índices. *Pronto quando* explicar por que o snapshot torna versão antiga reproduzível.
 - [x] [02.5 Criar e inspecionar migration](https://app.clickup.com/t/wdwmbdtkqb) — Migration inicial, leitura do SQL gerado e uso do Prisma Studio. *Pronto quando* as 3 tabelas existem e está claro por que não usar `migrate dev` em produção.
 - [x] [02.6 PrismaService e PrismaModule](https://app.clickup.com/t/wdwmbdtkqc) — Service com `OnModuleInit` e módulo que exporta o service. *Pronto quando* qualquer service consegue injetar `PrismaService`.
-- [ ] [02.7 Seed de dados](https://app.clickup.com/t/wdwmbdtkqd) — Seed idempotente com 3 transformadores (500, 750 e 1000 kVA). *Pronto quando* rodar o seed duas vezes não duplica dados.
-- [ ] [02.8 Health check com banco (Terminus)](https://app.clickup.com/t/wdwmbdtkqe) — Trocar o `/health` por `@nestjs/terminus` com indicador do Prisma. *Pronto quando* `/health` reflete o estado real do banco.
-- [ ] [02.9 Fixação da fase 02](https://app.clickup.com/t/wdwmbdtkqf) — Perguntas escritas sobre migrations, JSONB, `onDelete: Cascade` e exports. *Pronto quando* as respostas estão escritas.
+- [x] [02.7 Seed de dados](https://app.clickup.com/t/wdwmbdtkqd) — Seed idempotente com 3 transformadores (500, 750 e 1000 kVA). *Pronto quando* rodar o seed duas vezes não duplica dados.
+- [x] [02.8 Health check com banco (Terminus)](https://app.clickup.com/t/wdwmbdtkqe) — Trocar o `/health` por `@nestjs/terminus` com indicador do Prisma. *Pronto quando* `/health` reflete o estado real do banco.
+- [x] [02.9 Fixação da fase 02](https://app.clickup.com/t/wdwmbdtkqf) — Perguntas escritas sobre migrations, JSONB, `onDelete: Cascade` e exports. *Pronto quando* as respostas estão escritas.
 
 ## 03 CRUD e Injeção de Dependência
 
