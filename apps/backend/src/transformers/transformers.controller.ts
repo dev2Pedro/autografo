@@ -9,7 +9,6 @@ import {
   DefaultValuePipe,
   ParseIntPipe,
   Query,
-  Put,
 } from '@nestjs/common';
 import { TransformersService } from './transformers.service';
 import { CreateTransformerDto } from './dto/create-transformer.dto';
@@ -39,12 +38,12 @@ export class TransformersController {
     return this.transformersService.findOne(id);
   }
 
-  @Put(':id')
+  @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateTransformerDto: UpdateTransformerDto,
   ) {
-    return this.transformersService.update(+id, updateTransformerDto);
+    return this.transformersService.update(id, updateTransformerDto);
   }
 
   @Delete(':id')

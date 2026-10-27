@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { CreateTransformerDto } from './dto/create-transformer.dto';
 import { UpdateTransformerDto } from './dto/update-transformer.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -37,15 +38,19 @@ export class TransformersService {
   }
 
   async update(id: number, updateTransformerDto: UpdateTransformerDto) {
-
     try {
-      const transformer = await this.prisma.transformer.update({
+      return await this.prisma.transformer.update({
         where: { id },
         data: updateTransformerDto,
       });
-      return transformer;
-    } catch (error){
-      throw new NotFoundException();
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException();
+      }
+      throw error;
     }
   }
 
