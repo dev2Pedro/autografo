@@ -6,8 +6,11 @@ import { PrismaService } from '../prisma/prisma.service';
 @Injectable()
 export class TransformersService {
   constructor(private prisma: PrismaService) {}
-  create(createTransformerDto: CreateTransformerDto) {
-    return 'This action adds a new transformer';
+  async create(createTransformerDto: CreateTransformerDto) {
+    const transformer = await this.prisma.transformer.create({
+      data: createTransformerDto,
+    });
+    return transformer;
   }
 
   async findAll(page: number, limit: number) {
