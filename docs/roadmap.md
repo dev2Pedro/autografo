@@ -61,7 +61,7 @@ Atualizado em 25/10/2026.
 - [x] [04.2 ValidationPipe global](https://app.clickup.com/t/wdwmbdtkqv) — class-validator com `whitelist`, `forbidNonWhitelisted` e `transform`. *Pronto quando* campo desconhecido no body retorna 400.
 - [x] [04.3 CreateTransformerDto com regras](https://app.clickup.com/t/wdwmbdtkqw) — Decorators para as regras do plano, limites máximos e mensagens em português. *Pronto quando* cada regra tem um request de erro na collection.
 - [x] [04.4 UpdateDto com PartialType](https://app.clickup.com/t/wdwmbdtkqx) — `PartialType` e os demais mapped types. *Pronto quando* o update aceita campos parciais e valida os enviados.
-- [ ] [04.5 Validar query params](https://app.clickup.com/t/wdwmbdtkqy) — `PaginationQueryDto` com conversão para número, defaults e máximo. *Pronto quando* `?limit=9999` é limitado ou rejeitado.
+- [x] [04.5 Validar query params](https://app.clickup.com/t/wdwmbdtkqy) — `PaginationQueryDto` com conversão para número, defaults e máximo. *Pronto quando* `?limit=9999` é limitado ou rejeitado.
 - [ ] [04.6 Documentar API com Swagger](https://app.clickup.com/t/wdwmbdtkqz) — `@nestjs/swagger` em `/docs` com plugin do CLI e respostas de erro. *Pronto quando* `/docs` mostra todos os endpoints com schemas.
 - [ ] [04.7 Estudo comparativo: Zod](https://app.clickup.com/t/wdwmbdtkr0) — Validar um endpoint com Zod numa branch e comparar com class-validator. *Pronto quando* a decisão está registrada.
 - [ ] [04.8 Fixação da fase 04](https://app.clickup.com/t/wdwmbdtkr1) — Perguntas escritas sobre `whitelist`, transform de query e class-validator vs Zod. *Pronto quando* as respostas estão escritas.

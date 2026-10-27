@@ -8,13 +8,13 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  DefaultValuePipe,
   ParseIntPipe,
   Query,
 } from '@nestjs/common';
 import { TransformersService } from './transformers.service';
 import { CreateTransformerDto } from './dto/create-transformer.dto';
 import { UpdateTransformerDto } from './dto/update-transformer.dto';
+import { PaginationQueryDto } from './dto/pagination.query.dto';
 
 @Controller('transformers')
 export class TransformersController {
@@ -26,13 +26,8 @@ export class TransformersController {
   }
 
   @Get()
-  findAll(
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
-  ) {
-    const safePage = Math.max(page, 1);
-    const safeLimit = Math.min(Math.max(limit, 1), 100);
-    return this.transformersService.findAll(safePage, safeLimit);
+  findAll(@Query() query: PaginationQueryDto) {
+    return this.transformersService.findAll(query.page, query.limit);
   }
 
   @Get(':id')
