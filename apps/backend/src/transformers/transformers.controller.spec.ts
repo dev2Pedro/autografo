@@ -9,7 +9,10 @@ describe('TransformersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TransformersController],
-      providers: [TransformersService],
+      providers: [
+        TransformersService,
+        { provide: PrismaService, useValue: {} },
+      ],
     }).compile();
 
     controller = module.get<TransformersController>(TransformersController);
