@@ -1102,6 +1102,158 @@
           ]
         }
       }
+    },
+    {
+      "name": "Erro PATCH: potência negativa (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A potência deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"powerKva\": -5\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro PATCH: campo desconhecido (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"property foo should not exist\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"foo\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro PATCH: nome nulo (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"O nome deve ser um texto\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": null\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro PATCH: fases nulas (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"As fases devem ser um destes valores: MONO, TRI\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phases\": null\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers",
+            "1"
+          ]
+        }
+      }
     }
   ]
 }
