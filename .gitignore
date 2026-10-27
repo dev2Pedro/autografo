@@ -5,3 +5,9 @@ dist
 .next
 *.tsbuildinfo
 coverage/
+
+# Documentação e arquivos do Claude Code
+docs/
+.claude/
+CLAUDE.md
+CLAUDE.local.md
