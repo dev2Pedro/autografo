@@ -11,6 +11,7 @@ import {
   Max,
   MaxLength,
   Min,
+  ValidateIf,
 } from 'class-validator';
 
 const MAX_POWER_KVA = 1_000_000;
@@ -111,11 +112,12 @@ export class CreateTransformerDto {
   })
   radiatorCount?: number;
 
-  @IsOptional()
+  // Colunas não-nulas no banco: `null` deve falhar aqui (IsOptional o aceitaria e o Prisma daria 500).
+  @ValidateIf((_, value) => value !== undefined)
   @IsBoolean({ message: 'O campo de tanque deve ser verdadeiro ou falso' })
   hasTank?: boolean;
 
-  @IsOptional()
+  @ValidateIf((_, value) => value !== undefined)
   @IsBoolean({
     message: 'O campo de conservador deve ser verdadeiro ou falso',
   })

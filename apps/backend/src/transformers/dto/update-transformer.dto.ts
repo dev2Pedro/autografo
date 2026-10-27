@@ -23,4 +23,10 @@ export class UpdateTransformerDto extends PartialType(CreateTransformerDto) {
 
   @nullToInvalid()
   phases?: TransformerPhase;
+
+  @nullToInvalid()
+  hasTank?: boolean;
+
+  @nullToInvalid()
+  hasConservator?: boolean;
 }
