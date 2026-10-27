@@ -14,7 +14,7 @@ import {
 import { TransformersService } from './transformers.service';
 import { CreateTransformerDto } from './dto/create-transformer.dto';
 import { UpdateTransformerDto } from './dto/update-transformer.dto';
-import { PaginationQueryDto } from './dto/pagination.query.dto';
+import { PaginationQueryDto } from './dto/pagination-query.dto';
 
 @Controller('transformers')
 export class TransformersController {
