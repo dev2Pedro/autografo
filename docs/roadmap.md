@@ -48,12 +48,12 @@ Atualizado em 25/10/2026.
 - [x] [03.2 Gerar resource transformers](https://app.clickup.com/t/wdwmbdtkqh) — `nest g resource`, remover `entities` e injetar o Prisma. *Pronto quando* o módulo está registrado e o service acessa o Prisma.
 - [x] [03.3 GET /transformers com paginação](https://app.clickup.com/t/wdwmbdtkqj) — `skip`/`take`, `page`/`limit`, ordenação e resposta `{ data, meta }`. *Pronto quando* `?page=2&limit=1` retorna o segundo transformador do seed.
 - [x] [03.4 GET /transformers/:id e 404](https://app.clickup.com/t/wdwmbdtkqk) — `ParseIntPipe` e `NotFoundException`. *Pronto quando* um id ruim nunca retorna 500.
-- [ ] [03.5 POST /transformers](https://app.clickup.com/t/wdwmbdtkqm) — Criação com controller fino delegando ao service. *Pronto quando* a criação funciona pelo Postman/APIDog.
-- [ ] [03.6 PATCH /transformers/:id](https://app.clickup.com/t/wdwmbdtkqn) — Decidir PUT ou PATCH e tratar o erro P2025 do Prisma. *Pronto quando* a atualização parcial funciona e o 404 está correto.
-- [ ] [03.7 DELETE /transformers/:id](https://app.clickup.com/t/wdwmbdtkqp) — Remoção com 204 e decisão entre hard e soft delete. *Pronto quando* DELETE retorna 204 e o efeito nas relações está claro.
-- [ ] [03.8 Exception filter para erros do Prisma](https://app.clickup.com/t/wdwmbdtkqq) — Filter global que mapeia P2002 para 409 e P2025 para 404. *Pronto quando* os services não têm try/catch e os erros HTTP estão corretos.
-- [ ] [03.9 Collection Postman/APIDog](https://app.clickup.com/t/wdwmbdtkqr) — Collection com environment, requests do CRUD e casos de erro. *Pronto quando* a collection está versionada no repositório.
-- [ ] [03.10 Fixação da fase 03](https://app.clickup.com/t/wdwmbdtkqt) — Perguntas escritas sobre controller fino, PUT vs PATCH, onde tratar erro e escopo REQUEST. *Pronto quando* as respostas estão escritas.
+- [x] [03.5 POST /transformers](https://app.clickup.com/t/wdwmbdtkqm) — Criação com controller fino delegando ao service. *Pronto quando* a criação funciona pelo Postman/APIDog.
+- [x] [03.6 PATCH /transformers/:id](https://app.clickup.com/t/wdwmbdtkqn) — Decidir PUT ou PATCH e tratar o erro P2025 do Prisma. *Pronto quando* a atualização parcial funciona e o 404 está correto.
+- [x] [03.7 DELETE /transformers/:id](https://app.clickup.com/t/wdwmbdtkqp) — Remoção com 204 e decisão entre hard e soft delete. *Pronto quando* DELETE retorna 204 e o efeito nas relações está claro.
+- [x] [03.8 Exception filter para erros do Prisma](https://app.clickup.com/t/wdwmbdtkqq) — Filter global que mapeia P2002 para 409 e P2025 para 404. *Pronto quando* os services não têm try/catch e os erros HTTP estão corretos.
+- [x] [03.9 Collection Postman/APIDog](https://app.clickup.com/t/wdwmbdtkqr) — Collection com environment, requests do CRUD e casos de erro. *Pronto quando* a collection está versionada no repositório.
+- [x] [03.10 Fixação da fase 03](https://app.clickup.com/t/wdwmbdtkqt) — Perguntas escritas sobre controller fino, PUT vs PATCH, onde tratar erro e escopo REQUEST. *Pronto quando* as respostas estão escritas.
 
 ## 04 Validação
 
