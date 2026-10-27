@@ -290,14 +290,15 @@
       }
     },
     {
-      "name": "Erro: body inválido (400)",
+      "name": "Erro: nome vazio (400)",
       "event": [
         {
           "listen": "test",
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test('status 400', () => pm.response.to.have.status(400));"
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"O nome é obrigatório\"));"
             ]
           }
         }
@@ -310,6 +311,10 @@
             "value": "application/json"
           }
         ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
         "url": {
           "raw": "{{baseUrl}}/transformers",
           "host": [
@@ -318,10 +323,783 @@
           "path": [
             "transformers"
           ]
-        },
+        }
+      }
+    },
+    {
+      "name": "Erro: nome acima de 150 caracteres (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"O nome deve ter no máximo 150 caracteres\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"\",\n  \"powerKva\": -1,\n  \"phases\": \"X\"\n}"
+          "raw": "{\n  \"name\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: sem nome (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"O nome é obrigatório\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: potência negativa (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A potência deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": -5,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: potência acima do máximo (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A potência deve ser no máximo 1.000.000 kVA\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 2000000,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: potência com 3 casas decimais (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A potência deve ser um número com no máximo 2 casas decimais\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100.123,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: tensão primária zero (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A tensão primária deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 0,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: tensão primária acima do máximo (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A tensão primária deve ser no máximo 1.000.000 V\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 2000000,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: tensão secundária zero (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A tensão secundária deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 0,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: tensão secundária acima do máximo (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A tensão secundária deve ser no máximo 1.000.000 V\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 2000000,\n  \"phases\": \"TRI\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: fase inválida (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"As fases devem ser um destes valores: MONO, TRI\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"X\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: altura negativa (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A altura deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"heightMm\": -1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: largura negativa (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A largura deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"widthMm\": -1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: profundidade negativa (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A profundidade deve ser maior que zero\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"depthMm\": -1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: dimensão acima do máximo (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A altura deve ser no máximo 100.000 mm\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"heightMm\": 200000\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: buchas negativas (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A quantidade de buchas não pode ser negativa\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"bushingCount\": -1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: buchas fracionadas (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A quantidade de buchas deve ser um número inteiro\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"bushingCount\": 1.5\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: buchas acima do máximo (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A quantidade de buchas deve ser no máximo 100\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"bushingCount\": 101\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: radiadores negativos (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"A quantidade de radiadores não pode ser negativa\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"radiatorCount\": -1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: tanque com tipo errado (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"O campo de tanque deve ser verdadeiro ou falso\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"hasTank\": \"sim\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: conservador com tipo errado (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"O campo de conservador deve ser verdadeiro ou falso\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"hasConservator\": \"sim\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Erro: campo desconhecido (400)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status 400', () => pm.response.to.have.status(400));",
+              "pm.test('mensagem', () => pm.expect(pm.response.json().message).to.include(\"property foo should not exist\"));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"T\",\n  \"powerKva\": 100,\n  \"primaryVoltage\": 13800,\n  \"secondaryVoltage\": 380,\n  \"phases\": \"TRI\",\n  \"foo\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transformers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transformers"
+          ]
         }
       }
     }
