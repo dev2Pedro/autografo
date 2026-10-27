@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { CreateTransformerDto } from './dto/create-transformer.dto';
 import { UpdateTransformerDto } from './dto/update-transformer.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -37,35 +36,15 @@ export class TransformersService {
     return transformer;
   }
 
-  async update(id: number, updateTransformerDto: UpdateTransformerDto) {
-    try {
-      return await this.prisma.transformer.update({
-        where: { id },
-        data: updateTransformerDto,
-      });
-    } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2025'
-      ) {
-        throw new NotFoundException();
-      }
-      throw error;
-    }
+  update(id: number, updateTransformerDto: UpdateTransformerDto) {
+    return this.prisma.transformer.update({
+      where: { id },
+      data: updateTransformerDto,
+    });
   }
 
   // Hard delete: Drawing e DrawingVersion são removidos em cascata (onDelete: Cascade).
   async remove(id: number) {
-    try {
-      await this.prisma.transformer.delete({ where: { id } });
-    } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2025'
-      ) {
-        throw new NotFoundException();
-      }
-      throw error;
-    }
+    await this.prisma.transformer.delete({ where: { id } });
   }
 }
